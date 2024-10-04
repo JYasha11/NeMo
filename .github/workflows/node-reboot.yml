@@ -14,7 +14,7 @@ jobs:
       - name: Get list of VMs
         id: main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           RUNNERS=$(curl -L \
             -H "Accept: application/vnd.github+json" \
