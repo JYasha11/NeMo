@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       list-of-vms: ${{ steps.main.outputs.main }}
+    environment: ko3n1g/ci/improve-vm-maintenance
     steps:
       - name: Get list of VMs
         id: main
