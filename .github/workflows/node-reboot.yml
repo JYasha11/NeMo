@@ -25,6 +25,7 @@ jobs:
           MATRIX=$(echo $RUNNERS \
             | jq -c '[
                 .runners[] 
+                | select(.status == "online")
                 | {
                   "vm": .name, 
                   "n_gpus": [
