@@ -26,7 +26,7 @@ jobs:
             | jq -c '[
                 .runners[] 
                 | {
-                  "name": .name, 
+                  "vm": .name, 
                   "n_gpus": [
                     .labels[] 
                     | select(.name | endswith("gpu")) | .name
@@ -34,7 +34,7 @@ jobs:
                 }
               ]
             '
-          )" >> "GITHUB_OUTPUT"
+          )" | tee -a "GITHUB_OUTPUT"
 
   check-status-and-maybe-reboot:
     runs-on: ${{ matrix.vm }}
