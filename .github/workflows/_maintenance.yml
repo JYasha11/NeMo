@@ -15,7 +15,6 @@ on:
 jobs:
   check-status-and-maybe-reboot:
     runs-on: ${{ inputs.vm }}
-    needs: pre-flight
     outputs:
       status: ${{ steps.status.outputs.main }}
     steps:
@@ -39,7 +38,7 @@ jobs:
           echo ${{ secrets.VM_KEY }} | sudo -S reboot -h now || true
 
   re-install-vm:
-    needs: [check-status-and-maybe-reboot, pre-flight]
+    needs: [check-status-and-maybe-reboot]
     runs-on: ${{ inputs.vm }}
     if: ${{ needs.check-status-and-maybe-reboot.outputs.status == 'degraded' }}
     steps:
