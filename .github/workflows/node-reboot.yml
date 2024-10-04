@@ -38,7 +38,7 @@ jobs:
 
   check-status-and-maybe-reboot:
     runs-on: ${{ matrix.vm }}
-    environment: main
+    # environment: main
     needs: pre-flight
     outputs:
       status: ${{ steps.status.outputs.main }}
@@ -69,7 +69,7 @@ jobs:
   re-install-vm:
     needs: [check-status-and-maybe-reboot, pre-flight]
     runs-on: ${{ matrix.vm }}
-    environment: main
+    # environment: main
     if: ${{ needs.check-status-and-maybe-reboot.outputs.status == 'degraded' }}
     strategy:
       fail-fast: false
