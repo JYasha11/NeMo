@@ -2,14 +2,15 @@ name: ~maintenance
 
 on:
   workflow_call:
-    vm:
-      type: string
-      description: Name of VM
-      required: true
-    n_gpus:
-      type: string
-      description: Number of GPUs this VM has
-      required: true
+    inputs:
+      vm:
+        type: string
+        description: Name of VM
+        required: true
+      n_gpus:
+        type: string
+        description: Number of GPUs this VM has
+        required: true
   
 jobs:
   check-status-and-maybe-reboot:
