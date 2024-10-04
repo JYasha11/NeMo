@@ -35,7 +35,7 @@ jobs:
               ]
             '
           )
-          echo main=$MATRIX | tee -a "GITHUB_OUTPUT"
+          echo main=$MATRIX | tee -a "$GITHUB_OUTPUT"
 
   check-status-and-maybe-reboot:
     runs-on: ${{ matrix.vm }}
