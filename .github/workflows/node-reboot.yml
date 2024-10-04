@@ -22,7 +22,7 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/NVIDIA/NeMo/actions/runners)
 
-          echo "main=$(echo $RUNNERS \
+          MATRIX=$(echo $RUNNERS \
             | jq -c '[
                 .runners[] 
                 | {
@@ -34,7 +34,8 @@ jobs:
                 }
               ]
             '
-          )" | tee -a "GITHUB_OUTPUT"
+          )
+          echo main=$MATRIX | tee -a "GITHUB_OUTPUT"
 
   check-status-and-maybe-reboot:
     runs-on: ${{ matrix.vm }}
