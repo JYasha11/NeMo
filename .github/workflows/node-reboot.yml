@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         include: ${{ fromJSON(needs.pre-flight.outputs.list-of-vms )}}
-    uses: ./.github/workflows/_test_template.yml
+    uses: ./.github/workflows/_maintenance.yml
     with:
       vm: ${{ matrix.vm }}
       n_gpus: ${{ matrix.n_gpus }}
