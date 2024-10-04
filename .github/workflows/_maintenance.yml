@@ -11,9 +11,10 @@ on:
         type: string
         description: Number of GPUs this VM has
         required: true
-  
+        
 jobs:
   check-status-and-maybe-reboot:
+    environment: ko3n1g/ci/improve-vm-maintenance
     runs-on: ${{ inputs.vm }}
     outputs:
       status: ${{ steps.status.outputs.main }}
@@ -41,6 +42,7 @@ jobs:
     needs: [check-status-and-maybe-reboot]
     runs-on: ${{ inputs.vm }}
     if: ${{ needs.check-status-and-maybe-reboot.outputs.status == 'degraded' }}
+    environment: ko3n1g/ci/improve-vm-maintenance
     steps:
       - name: Re-install docker interface
         run: |

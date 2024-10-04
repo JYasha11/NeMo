@@ -39,7 +39,6 @@ jobs:
           echo main=$MATRIX | tee -a "$GITHUB_OUTPUT"
 
   maintenance:
-    # environment: main
     needs: pre-flight
     strategy:
       fail-fast: false
