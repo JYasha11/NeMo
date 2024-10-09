@@ -41,13 +41,13 @@ jobs:
   re-install-vm:
     needs: [check-status-and-maybe-reboot]
     runs-on: ${{ inputs.vm }}
-    if: ${{ needs.check-status-and-maybe-reboot.outputs.status == 'degraded' }}
+    if: ${{ needs.check-status-and-maybe-reboot.outputs.status == 'degraded' || failure() }}
     environment: ko3n1g/ci/improve-vm-maintenance
     steps:
       - name: Re-install docker interface
         run: |
           echo ${{ secrets.VM_KEY }} | sudo -S bash -c "
-            sudo apt-get remove -y nvidia-docker2 nvidia-container-toolkit docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; 
+            apt-get remove -y nvidia-docker2 nvidia-container-toolkit docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; 
 
             # Add Docker's official GPG key:
             apt-get update
