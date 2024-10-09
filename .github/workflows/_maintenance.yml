@@ -28,7 +28,7 @@ jobs:
 
           if [[ $NUM_GPUS -ne ${{ inputs.n_gpus }} ]]; then
             echo "Issues with GPU detected, will attempt a reboot & re-install."
-            echo "main=degraded" >> "GITHUB_OUTPUT"
+            echo "main=degraded" >> "$GITHUB_OUTPUT"
           else
             echo "main=healthy" >> "$GITHUB_OUTPUT"
           fi
