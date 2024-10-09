@@ -14,7 +14,7 @@ on:
         
 jobs:
   check-status-and-maybe-reboot:
-    environment: ko3n1g/ci/improve-vm-maintenance
+    environment: main
     runs-on: ${{ inputs.vm }}
     outputs:
       status: ${{ steps.status.outputs.main }}
@@ -42,7 +42,7 @@ jobs:
     needs: [check-status-and-maybe-reboot]
     runs-on: ${{ inputs.vm }}
     if: ${{ needs.check-status-and-maybe-reboot.outputs.status == 'degraded' || failure() }}
-    environment: ko3n1g/ci/improve-vm-maintenance
+    environment: main
     steps:
       - name: Re-install docker interface
         run: |
