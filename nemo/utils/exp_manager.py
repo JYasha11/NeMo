@@ -167,7 +167,7 @@ class FaultToleranceParams:
     rank_heartbeat_timeout: Optional[float] = 45.0 * 60.0
     calculate_timeouts: bool = True
     safety_factor: float = 5.0
-    rank_termination_signal: signal.Signals = signal.SIGKILL
+    rank_termination_signal: signal.Signals = signal.SIGTERM 
     log_level: str = 'INFO'
     max_rank_restarts: int = 0
     max_subsequent_job_failures: int = 0
@@ -179,7 +179,7 @@ class FaultToleranceParams:
 class ExpManagerConfig:
     """Experiment Manager config for validation of passed arguments."""
 
-    # Log dir creation parameters
+    # Log dir creation parametersn
     explicit_log_dir: Optional[str] = None
     exp_dir: Optional[str] = None
     name: Optional[str] = None
